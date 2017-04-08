@@ -1,0 +1,49 @@
+# Server version 0.08 running on jake-t420:8123
+# Game ID: 1
+# Board class: bohnenspiel.BohnenspielBoard
+# Timeout: 1000
+# First Move Timeout: 30000
+# Date: Mon Mar 20 14:21:13 EDT 2017
+# Player 1: Player-0, 'GreedyPlayer', running on localhost
+# Player 2: Player-1, 'Human', running on localhost
+START Player-0 GreedyPlayer
+START Player-1 Human
+PIT 0 0
+PIT 1 0
+PIT 0 5
+PIT 1 0
+PIT 0 1
+PIT 1 1
+PIT 0 4
+PIT 1 2
+PIT 0 3
+PIT 1 2
+PIT 0 2
+PIT 1 4
+PIT 0 3
+PIT 1 5
+PIT 0 2
+PIT 1 4
+PIT 0 0
+PIT 1 3
+PIT 0 1
+PIT 0 0
+PIT 0 4
+PIT 1 0
+PIT 0 0
+PIT 1 1
+PIT 0 3
+PIT 1 2
+PIT 0 4
+PIT 1 4
+PIT 1 5
+PIT 0 0
+PIT 1 3
+PIT 0 2
+PIT 1 1
+PIT 0 4
+PIT 1 0
+PIT 1 1
+PIT 1 4
+GAMEOVER WINNER 0         Player-0 score: 52  Player-1 score: 20
+# Game ended: Mon Mar 20 14:21:48 EDT 2017

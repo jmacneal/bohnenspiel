@@ -1,0 +1,13 @@
+# Server version 0.08 running on jake-t420:8123
+# Game ID: 6
+# Board class: bohnenspiel.BohnenspielBoard
+# Timeout: 1000
+# First Move Timeout: 30000
+# Date: Fri Apr 07 15:48:21 EDT 2017
+# Player 1: Player-0, 'Human', running on localhost
+# Player 2: Player-1, 'Human', running on localhost
+START Player-0 Human
+START Player-1 Human
+PIT 0 5
+GAMEOVER USER CANCEL UNDECIDED
+# Game ended: Fri Apr 07 15:48:36 EDT 2017
