@@ -1,0 +1,16 @@
+# Server version 0.08 running on jake-t420:8123
+# Game ID: 243
+# Board class: bohnenspiel.BohnenspielBoard
+# Timeout: 1000
+# First Move Timeout: 30000
+# Date: Sat Apr 08 17:09:45 EDT 2017
+# Player 1: Player-0, '260566105', running on localhost
+# Player 2: Player-1, 'GreedyPlayer', running on localhost
+START Player-0 260566105
+START Player-1 GreedyPlayer
+PIT 0 0
+PIT 1 0
+PIT 0 1
+PIT 1 5
+GAMEOVER TIMEOUT WINNER 1         Player-0 score: 0  Player-1 score: 2
+# Game ended: Sat Apr 08 17:09:51 EDT 2017

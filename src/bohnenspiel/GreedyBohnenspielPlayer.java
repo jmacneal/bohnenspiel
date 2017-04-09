@@ -1,6 +1,6 @@
 package bohnenspiel;
 
-import student_player.mytools.MyTools;
+import student_player.mytools.SearchTools;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,7 +20,7 @@ public class GreedyBohnenspielPlayer extends BohnenspielPlayer {
     {
 
         // Use code stored in ``mytools`` package.
-        MyTools.getSomething();
+        SearchTools.getSomething();
 
         // Get the legal moves for the current board state.
         ArrayList<BohnenspielMove> moves = board_state.getLegalMoves();

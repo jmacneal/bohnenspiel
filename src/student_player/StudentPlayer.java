@@ -1,54 +1,82 @@
 package student_player;
 
-import java.util.ArrayList;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.HashMap;
 
 import bohnenspiel.BohnenspielBoardState;
 import bohnenspiel.BohnenspielMove;
 import bohnenspiel.BohnenspielPlayer;
-import bohnenspiel.BohnenspielMove.MoveType;
-import student_player.mytools.MyTools;
 import student_player.mytools.AlphaBeta;
-import student_player.mytools.MiniMax;
+import student_player.mytools.SearchTools;
+
+
+
 /** A Hus player submitted by a student. */
+
 public class StudentPlayer extends BohnenspielPlayer {
 
-    /** You must modify this constructor to return your student number.
-     * This is important, because this is what the code that runs the
-     * competition uses to associate you with your agent.
-     * The constructor should do nothing else. */
-    public StudentPlayer() { super("260566105"); }
+	/** You must modify this constructor to return your student number.
+	 * This is important, because this is what the code that runs the
+	 * competition uses to associate you with your agent.
+	 * The constructor should do nothing else. */
+	public StudentPlayer() { super("260566105"); }
+	static HashMap<String, Integer> max_map = null;
+	static HashMap<String, Integer> min_map = null;
+	static HashMap<String, String> move_map = null;
 
-    /** This is the primary method that you need to implement.
-     * The ``board_state`` object contains the current state of the game,
-     * which your agent can use to make decisions. See the class
+	/** This is the primary method that you need to implement.
+	 * The ``board_state`` object contains the current state of the game,
+	 * which your agent can use to make decisions. See the class
 bohnenspiel.RandomPlayer
-     * for another example agent. */
-    public BohnenspielMove chooseMove(BohnenspielBoardState board_state)
-    {
-        // Get the contents of the pits so we can use it to make decisions.
-        int[][] pits = board_state.getPits();
+	 * for another example agent. */
+	public BohnenspielMove chooseMove(BohnenspielBoardState board_state)
+	{
+		
+		long startTime = System.nanoTime();
+		int timeout = boardgame.Server.DEFAULT_TIMEOUT;
+		BohnenspielBoardState cloned_board_state = (BohnenspielBoardState) board_state.clone();
 
-        // Use ``player_id`` and ``opponent_id`` to get my pits and opponent pits.
-        int[] my_pits = pits[player_id];
-        int[] op_pits = pits[opponent_id];
+		if(board_state.getTurnNumber() == 0){
+			timeout = boardgame.Server.FIRST_MOVE_TIMEOUT;
+//			state_move_map = SearchTools.generateMoveLookupTable(cloned_board_state, 4);
+			try
+			{
+//				FileInputStream fis = new FileInputStream("data/min_map.ser");
+//				ObjectInputStream ois = new ObjectInputStream(fis);
+//				min_map = (HashMap<String, Integer>) ois.readObject();
+//				ois.close();
+//				fis.close();
+//				fis = new FileInputStream("data/max_map.ser");
+//				ois = new ObjectInputStream(fis);
+//				max_map = (HashMap<String, Integer>) ois.readObject();
+//				ois.close();
+//				fis.close();
+				FileInputStream fis = new FileInputStream("data/move_map.ser");
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				move_map = (HashMap<String, String>) ois.readObject();
+				ois.close();
+				fis.close();
+				System.out.println("Created hashmaps");
+			}catch(IOException ioe)
+			{
+				ioe.printStackTrace();
+			}catch(ClassNotFoundException c)
+			{
+				System.out.println("Class not found");
+				c.printStackTrace();
+			}
+		}
 
-        // Use code stored in ``mytools`` package.
-//        MyTools.getSomething();
+		BohnenspielMove move = AlphaBeta.alpha_beta(cloned_board_state, 8, timeout, false, false, false, null, null, null);
 
-        // Get the legal moves for the current board state.
-//        ArrayList<BohnenspielMove> moves = board_state.getLegalMoves();
-//        BohnenspielMove move = moves.get(0);
-  
-     
-        // We can see the effects of a move like this...
-        BohnenspielBoardState cloned_board_state = (BohnenspielBoardState) board_state.clone();
-//        cloned_board_state.move(move);
+		long endTime = System.nanoTime();
+		System.out.println("Move computation time: " + (endTime - startTime)/1000000 + " ms");
+		//        System.out.println("Board state size " + ObjectSizeFetcher.getObjectSize(cloned_board_state));
 
-
-//        BohnenspielMove move = MiniMax.minimax(cloned_board_state, player_id);
-        BohnenspielMove move = AlphaBeta.alpha_beta(cloned_board_state, player_id);
-
-        // But since this is a placeholder algorithm, we won't act on that information.
-        return move;
-    }
+//		System.out.println(move.toString());
+		System.out.println(move.toPrettyString());
+		return move;
+	}
 }

@@ -67,7 +67,7 @@ public class BohnenspielBoardState extends BoardState{
     // ID of the player that plays first.
     private int first_player;
     
-    private int [] skipCredit={3,3};
+    private int [] skipCredit={2,2};
 
     public int getCredit(int player)
     {
@@ -396,6 +396,10 @@ public class BohnenspielBoardState extends BoardState{
     	if (getCredit(player_id)>0)
     		return true;
     	
+    	if (getCredit(player_id)>0 && skipCredit[player_id]==0)
+    	    return true;
+
+
     	int pit = 0;
 
         for(int i = 0; i < 2 * BOARD_WIDTH; i++){
