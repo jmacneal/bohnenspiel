@@ -66,7 +66,7 @@ public class StudentPlayer extends BohnenspielPlayer {
 			}
 		}
 
-		BohnenspielMove move = AlphaBeta.alpha_beta(cloned_board_state, 10, timeout, false, false, false, 0, true, null, null, null);
+		BohnenspielMove move = AlphaBeta.alpha_beta(cloned_board_state, 10, timeout, false, false, false, 0, true, null, null, move_map);
 
 //		long endTime = System.nanoTime();
 //		System.out.println("Move computation time: " + (endTime - startTime)/1000000 + " ms");

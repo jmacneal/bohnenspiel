@@ -22,9 +22,6 @@ public class SearchTools {
 	 * By passing the global player_id, this allows for the sort to always sort in the correct order.
 	 */
 	public static ArrayList<BohnenspielMove> orderMoves(final BohnenspielBoardState bs, final int player_id){
-		//		BohnenspielBoardState temp_bs = (BohnenspielBoardState) bs.clone();
-		//		MoveComparator comparator = new MoveComparator(bs);
-		//		sortedMoves.sort(comparator);
 
 		ArrayList<BohnenspielMove> sortedMoves = bs.getLegalMoves();
 		Collections.sort(sortedMoves,new Comparator<BohnenspielMove>(){
@@ -48,6 +45,10 @@ public class SearchTools {
 
 
 
+	/*
+	 * Default evaluation function, weighting both the score differential and the difference in the
+	 * number of pieces on both sides.
+	 */
 	public static int eval(BohnenspielBoardState bs, int player_id){
 		int score_difference = bs.getScore(player_id) - bs.getScore(1 - player_id);
 		int piece_difference = 0;
@@ -56,16 +57,18 @@ public class SearchTools {
 			piece_difference += i;
 		for(int j : pits[1 - player_id])
 			piece_difference -= j;
-		
-//		return score_difference;
+
 		return (int)(score_difference + piece_difference * 0.5);
 	}
 
 
-	
-		public static int eval1(BohnenspielBoardState bs, int player_id){
-			return bs.getScore(player_id) - bs.getScore(1 - player_id);
-		}
+
+	/*
+	 * Basic evaluation function, taking just the score differential
+	 */
+	public static int eval_basic(BohnenspielBoardState bs, int player_id){
+		return bs.getScore(player_id) - bs.getScore(1 - player_id);
+	}
 
 	public static boolean game_over(BohnenspielBoardState bs){
 		ArrayList<BohnenspielMove> moves = bs.getLegalMoves();
@@ -75,9 +78,13 @@ public class SearchTools {
 		return false;
 	}
 
+	
+	/*
+	 * Generate a lookup table of best moves, with search depth decreasing
+	 */
 	public static HashMap<String, String> generateMoveLookupTable(BohnenspielBoardState bs, int max_search_depth){
 		HashMap<String, String> map =  new HashMap<String, String>();
-		
+
 		for(BohnenspielMove move0 : bs.getLegalMoves()){
 			BohnenspielBoardState bs_temp0 = (BohnenspielBoardState) bs.clone();
 			bs_temp0.move(move0);
@@ -93,12 +100,6 @@ public class SearchTools {
 						for(BohnenspielMove move4 : bs_temp3.getLegalMoves()){
 							BohnenspielBoardState bs_temp4 = (BohnenspielBoardState) bs_temp3.clone();
 							bs_temp4.move(move4);
-//							for(BohnenspielMove move5 : bs_temp4.getLegalMoves()){
-//								BohnenspielBoardState bs_temp5 = (BohnenspielBoardState) bs_temp4.clone();
-//								bs_temp5.move(move5);
-//								BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp5, max_search_depth, 10000, false, false, false, null, null, map);
-//								map.putIfAbsent(bs_temp5.toString(), bestMove.toTransportable());	
-//							}
 							BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp4, max_search_depth - 5, 10000, false, false, false, 0, false, null, null, map);
 							map.putIfAbsent(bs_temp4.toString(), bestMove.toTransportable());	
 						}
@@ -122,14 +123,14 @@ public class SearchTools {
 			System.out.println("Finished one iteration of outer loop");
 
 		}
-		
+
 		BohnenspielBoardState bs_temp = (BohnenspielBoardState) bs.clone();
 		BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs, max_search_depth, 10000, false, false, false, 0, false, null, null, map);
 		map.putIfAbsent(bs_temp.toString(), bestMove.toTransportable());	
 		return map;
 
 	}
-	
+
 	public static void serializeMap(HashMap<String, String> map, String name){
 		System.out.println("Map Size: " + map.size());
 

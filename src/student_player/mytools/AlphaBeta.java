@@ -159,7 +159,7 @@ public class AlphaBeta {
 				return SearchTools.eval(bs, PLAYER_ID);
 				
 			case 1:
-				return SearchTools.eval1(bs, PLAYER_ID);
+				return SearchTools.eval_basic(bs, PLAYER_ID);
 			}
 		}
 
@@ -219,7 +219,7 @@ public class AlphaBeta {
 				return SearchTools.eval(bs, PLAYER_ID);
 				
 			case 1:
-				return SearchTools.eval1(bs, PLAYER_ID);
+				return SearchTools.eval_basic(bs, PLAYER_ID);
 			}
 		}
 		if(min_map.containsKey(bs.toString()) && MEMOIZE){
