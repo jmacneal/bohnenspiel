@@ -54,6 +54,9 @@ public class Autoplay
                 "java", "-cp", "bin", "-Xms520m", "-Xmx520m", "boardgame.Client", "student_player.StudentMiniMax");
             client2_pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
 //            ProcessBuilder client2_pb = new ProcessBuilder(
+//                    "java", "-cp", "bin", "-Xms520m", "-Xmx520m", "boardgame.Client", "bohnenspiel.RandomBohnenspielPlayer");
+//                client2_pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+//            ProcessBuilder client2_pb = new ProcessBuilder(
 //                    "java", "-cp", "bin", "-Xms520m", "-Xmx520m", "boardgame.Client", "bohnenspiel.GreedyBohnenspielPlayer");
 //                client2_pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
 

@@ -7,7 +7,7 @@ import bohnenspiel.BohnenspielBoardState;
 import bohnenspiel.BohnenspielMove;
 
 public class Precompute_Moves {
-	static int MAX_DEPTH = 11;
+	static int MAX_DEPTH = 13;
 	static boolean MEMOIZATION = true;
 	static boolean REORDERING = false;
 	static boolean SERIALIZE = true;

@@ -1,0 +1,81 @@
+# Server version 0.08 running on jake-t420:8123
+# Game ID: 673
+# Board class: bohnenspiel.BohnenspielBoard
+# Timeout: 700
+# First Move Timeout: 30000
+# Date: Mon Apr 10 22:17:50 EDT 2017
+# Player 1: Player-0, 'MiniMax', running on localhost
+# Player 2: Player-1, '260566105', running on localhost
+START Player-0 MiniMax
+START Player-1 260566105
+PIT 0 1
+PIT 1 1
+PIT 0 1
+PIT 1 2
+PIT 0 1
+PIT 1 0
+PIT 0 1
+PIT 1 2
+PIT 0 2
+PIT 1 2
+PIT 0 2
+PIT 1 1
+PIT 0 1
+PIT 1 0
+PIT 0 2
+PIT 1 2
+PIT 0 0
+PIT 1 2
+PIT 0 2
+PIT 1 1
+PIT 0 1
+PIT 1 0
+PIT 0 3
+PIT 1 2
+PIT 0 1
+PIT 1 1
+PIT 0 0
+PIT 1 0
+PIT 0 3
+PIT 1 2
+PIT 1 1
+PIT 0 2
+PIT 1 2
+PIT 0 1
+PIT 1 4
+PIT 0 1
+PIT 1 1
+PIT 0 0
+PIT 1 0
+PIT 0 3
+PIT 1 4
+PIT 0 2
+PIT 1 1
+PIT 0 3
+PIT 1 2
+PIT 0 5
+PIT 1 5
+PIT 0 5
+PIT 1 5
+PIT 0 1
+PIT 1 2
+PIT 0 2
+PIT 1 0
+PIT 0 5
+PIT 1 0
+PIT 0 3
+PIT 1 0
+PIT 0 4
+PIT 1 2
+PIT 0 4
+PIT 1 0
+PIT 0 3
+PIT 1 1
+PIT 0 4
+PIT 1 2
+PIT 0 5
+PIT 1 0
+PIT 1 1
+PIT 1 2
+GAMEOVER WINNER 1         Player-0 score: 24  Player-1 score: 48
+# Game ended: Mon Apr 10 22:18:14 EDT 2017

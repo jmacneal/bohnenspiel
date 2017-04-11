@@ -17,29 +17,6 @@ public class SearchTools {
 		return -1;
 	}		
 
-	//	public static class MoveComparator implements Comparator<BohnenspielMove>{
-	//		public static final MoveComparator instance = new MoveComparator();
-	//		private int player_id;
-	//		private BohnenspielBoardState state;
-	//		public MoveComparator(BohnenspielBoardState bs) {
-	//			this.player_id = bs.getTurnPlayer();
-	//			this.state = (BohnenspielBoardState) bs.clone();
-	//		}
-	//		
-	//		@Override
-	//		public int compare(BohnenspielMove move0, BohnenspielMove move1) {
-	//			BohnenspielBoardState state0 = (BohnenspielBoardState) state.clone();
-	//			BohnenspielBoardState state1 = (BohnenspielBoardState) state.clone();
-	//
-	//			state0.move(move0);
-	//			state1.move(move1);
-	//			int move0_val = eval(state0, player_id);
-	//			int move1_val = eval(state1, player_id);
-	//
-	//			return move0_val - move1_val;
-	//		}
-	//	}
-
 	/*
 	 * Move ordering should order the moves from highest to lowest in estimated value for the Maximizing player (top node).
 	 * By passing the global player_id, this allows for the sort to always sort in the correct order.
@@ -85,10 +62,10 @@ public class SearchTools {
 	}
 
 
-	//	public static int eval(BohnenspielBoardState bs){
-	//		int player_id = bs.getTurnPlayer();
-	//		return bs.getScore(player_id) - bs.getScore(1 - player_id);
-	//	}
+	
+		public static int eval1(BohnenspielBoardState bs, int player_id){
+			return bs.getScore(player_id) - bs.getScore(1 - player_id);
+		}
 
 	public static boolean game_over(BohnenspielBoardState bs){
 		ArrayList<BohnenspielMove> moves = bs.getLegalMoves();
@@ -122,32 +99,32 @@ public class SearchTools {
 //								BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp5, max_search_depth, 10000, false, false, false, null, null, map);
 //								map.putIfAbsent(bs_temp5.toString(), bestMove.toTransportable());	
 //							}
-							BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp4, max_search_depth, 10000, false, false, false, null, null, map);
+							BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp4, max_search_depth - 5, 10000, false, false, false, 0, false, null, null, map);
 							map.putIfAbsent(bs_temp4.toString(), bestMove.toTransportable());	
 						}
-						BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp3, max_search_depth, 10000, false, false, false, null, null, map);
+						BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp3, max_search_depth - 4, 10000, false, false, false, 0, false, null, null, map);
 						map.putIfAbsent(bs_temp3.toString(), bestMove.toTransportable());	
 						System.out.println("Finished one iteration of 4th loop");
 					}
 
-					BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp2, max_search_depth, 10000, false, false, false, null, null, map);
+					BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp2, max_search_depth - 3, 10000, false, false, false, 0, false, null, null, map);
 					map.putIfAbsent(bs_temp2.toString(), bestMove.toTransportable());
 					System.out.println("Finished one iteration of 3rd loop");
 
 				}
-				BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp1, max_search_depth, 10000, false, false, false, null, null, map);
+				BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp1, max_search_depth - 2, 10000, false, false, false, 0, false, null, null, map);
 				map.putIfAbsent(bs_temp1.toString(), bestMove.toTransportable());	
 				System.out.println("Finished one iteration of 2nd loop");
 
 			}
-			BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp0, max_search_depth, 10000, false, false, false, null, null, map);
+			BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs_temp0, max_search_depth - 1, 10000, false, false, false, 0, false, null, null, map);
 			map.putIfAbsent(bs_temp0.toString(), bestMove.toTransportable());	
 			System.out.println("Finished one iteration of outer loop");
 
 		}
 		
 		BohnenspielBoardState bs_temp = (BohnenspielBoardState) bs.clone();
-		BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs, max_search_depth, 10000, false, false, false, null, null, map);
+		BohnenspielMove bestMove = AlphaBeta.alpha_beta(bs, max_search_depth, 10000, false, false, false, 0, false, null, null, map);
 		map.putIfAbsent(bs_temp.toString(), bestMove.toTransportable());	
 		return map;
 
